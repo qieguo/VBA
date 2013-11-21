@@ -33,8 +33,8 @@ static void callBack(CFNotificationCenterRef center, void *observer, CFStringRef
         [[AVAudioSession sharedInstance] setActive:YES withFlags:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     }
     NSString *soundFilePath =
-    [[NSBundle mainBundle] pathForResource: @"nosound10"
-                                    ofType: @"mp3"];
+    [[NSBundle mainBundle] pathForResource: @"nosound300"
+                                    ofType: @"m4a"];
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
     self.audioPlayer =
     [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL

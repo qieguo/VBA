@@ -21,10 +21,10 @@
 		840C7BCC183DFD300039F68E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C7BAE183DFD300039F68E /* UIKit.framework */; };
 		840C7BD4183DFD300039F68E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840C7BD2183DFD300039F68E /* InfoPlist.strings */; };
 		840C7BD6183DFD300039F68E /* VBATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C7BD5183DFD300039F68E /* VBATests.m */; };
-		840C7BE1183DFD580039F68E /* nosound10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840C7BDF183DFD580039F68E /* nosound10.mp3 */; };
 		840C7BE3183DFF180039F68E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C7BE2183DFF180039F68E /* CoreTelephony.framework */; };
 		840C7BE5183DFF1E0039F68E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C7BE4183DFF1E0039F68E /* AudioToolbox.framework */; };
 		840C7BE7183DFF230039F68E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C7BE6183DFF230039F68E /* AVFoundation.framework */; };
+		8469EFDA183E093A00AEE9F2 /* nosound300.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8469EFD9183E093A00AEE9F2 /* nosound300.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +57,11 @@
 		840C7BD1183DFD300039F68E /* VBATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VBATests-Info.plist"; sourceTree = "<group>"; };
 		840C7BD3183DFD300039F68E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840C7BD5183DFD300039F68E /* VBATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBATests.m; sourceTree = "<group>"; };
-		840C7BDF183DFD580039F68E /* nosound10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nosound10.mp3; sourceTree = "<group>"; };
 		840C7BE0183DFD580039F68E /* PrivateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateHeader.h; sourceTree = "<group>"; };
 		840C7BE2183DFF180039F68E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		840C7BE4183DFF1E0039F68E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		840C7BE6183DFF230039F68E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8469EFD9183E093A00AEE9F2 /* nosound300.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = nosound300.m4a; path = ../../../nosound300.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 		840C7BB0183DFD300039F68E /* VBA */ = {
 			isa = PBXGroup;
 			children = (
-				840C7BDF183DFD580039F68E /* nosound10.mp3 */,
+				8469EFD9183E093A00AEE9F2 /* nosound300.m4a */,
 				840C7BE0183DFD580039F68E /* PrivateHeader.h */,
 				840C7BB9183DFD300039F68E /* AppDelegate.h */,
 				840C7BBA183DFD300039F68E /* AppDelegate.m */,
@@ -258,8 +258,8 @@
 			files = (
 				840C7BC3183DFD300039F68E /* Images.xcassets in Resources */,
 				840C7BB5183DFD300039F68E /* InfoPlist.strings in Resources */,
-				840C7BE1183DFD580039F68E /* nosound10.mp3 in Resources */,
 				840C7BBE183DFD300039F68E /* Main.storyboard in Resources */,
+				8469EFDA183E093A00AEE9F2 /* nosound300.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +414,7 @@
 				INFOPLIST_FILE = "VBA/VBA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B3C5311C-7B53-4AD6-9D50-681F8FDC4C5A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -425,13 +425,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sina.Com Technology (China) Co., Ltd.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VBA/VBA-Prefix.pch";
 				INFOPLIST_FILE = "VBA/VBA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B3C5311C-7B53-4AD6-9D50-681F8FDC4C5A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -497,6 +497,7 @@
 				840C7BDB183DFD300039F68E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		840C7BDC183DFD300039F68E /* Build configuration list for PBXNativeTarget "VBATests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +506,7 @@
 				840C7BDE183DFD300039F68E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
