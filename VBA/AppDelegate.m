@@ -7,12 +7,50 @@
 //
 
 #import "AppDelegate.h"
+#import "PrivateHeader.h"
+@import AudioToolbox;
 
 @implementation AppDelegate
+
+static void callBack(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+    if ([(__bridge NSString *)name isEqualToString:@"kCTCallStatusChangeNotification"]) {
+        int callstate = [[(__bridge NSDictionary *)userInfo objectForKey:@"kCTCallStatus"] intValue];
+        if (callstate == 1) {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        }
+    }
+}
+
+- (void)playBackgroundSoundEffect {
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0))
+    {
+        [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    }
+    else
+    {
+        [[AVAudioSession sharedInstance] setActive:YES withFlags:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    }
+    NSString *soundFilePath =
+    [[NSBundle mainBundle] pathForResource: @"nosound10"
+                                    ofType: @"mp3"];
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+    self.audioPlayer =
+    [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL
+                                           error: nil];
+    _audioPlayer.delegate = self;
+    [_audioPlayer prepareToPlay];
+    _audioPlayer.numberOfLoops = -1;
+    [_audioPlayer play];
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    CTTelephonyCenterAddObserver(CTTelephonyCenterGetDefault(), NULL, &callBack, CFSTR("kCTCallStatusChangeNotification"), NULL, CFNotificationSuspensionBehaviorHold);
+    [self playBackgroundSoundEffect];
     return YES;
 }
 							
@@ -41,6 +79,33 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    CTTelephonyCenterRemoveObserver(CTTelephonyCenterGetDefault(), NULL, CFSTR("kCTCallStatusChangeNotification"), NULL);
+    NSLog(@"exit");
+}
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
+{
+    [_audioPlayer pause];
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withFlags:(NSUInteger)flags
+{
+    if (flags == AVAudioSessionInterruptionFlags_ShouldResume)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
+            [_audioPlayer play];
+        });
+    }
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
+{
+    if (flags == AVAudioSessionInterruptionOptionShouldResume)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1), dispatch_get_main_queue(), ^{
+            [_audioPlayer play];
+        });
+    }
 }
 
 @end
